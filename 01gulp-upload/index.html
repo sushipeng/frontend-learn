@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>这是html</title>
+</head>
+
+<body>
+	这是html内容
+	<form action="">
+		<input type="file" id="uploadFile" value="点击上传">
+		<input type="button" id="uploadBtn" value="提交">
+	</form>
+	<script src="./js/main.js"></script>
+	<script src="http://images.vrm.cn/2017/04/19/jquery-3.2.1.min.js"></script>
+	<script>
+	$("#uploadBtn").on("click", function(e) {
+		var fd = new FormData();
+		// fd.append('token', 1)
+		// fd.append('activityId', 1),
+		// fd.append('activityName', '活动1')
+		// fd.append('corpId', 1)
+		// fd.append('name', '代码名称')
+		// fd.append('biref', '代码简介')
+		// fd.append('terminalType', 1)
+		// fd.append('codeType', '2')
+		// fd.append('packageLevel', '1')
+		fd.append('file', $('#uploadFile')[0].files[0])
+		var orignData = {
+			activityId: '1',
+			activityName: '活动1',
+			corpId: '1',
+			name: '代码名称',
+			brief: '代码简介',
+			terminalType: '1',
+			codeType: '2',
+			packageLevel: '1'
+		}
+		var ajaxUrl = 'http://192.168.0.201:8082/amms-back/code/page/add';
+		var queryUrl = '';
+		for (var item in orignData) {
+			queryUrl += item + '=' + orignData[item] + '&'
+		}
+		queryUrl = queryUrl.slice(0, -1)
+		ajaxUrl = ajaxUrl + '?' + queryUrl;
+		//http://192.168.0.201:8082/amms-back/code/page/add?activityId=1&activityName=1&corpId=1&name=1&brief=1&terminalType=1&codeType=1&packageLevel=1
+		$.ajax({
+			type: 'POST',
+			url: ajaxUrl,
+			data: fd,
+			beforeSend: function(xhr){
+				xhr.setRequestHeader('token',1)
+			},
+			contentType: 'multipart/form-data',
+			processData: false,
+			contentType: false,
+			success: function(res) {
+				console.log('success', res);
+			},
+			error: function(xhr, textStuts, err) {
+				console.log('error:', textStuts)
+			}
+
+		})
+	})
+	</script>
+</body>
+
+</html>

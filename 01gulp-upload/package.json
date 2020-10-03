@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-upload": "^1.0.0"
+  },
+  "dependencies": {
+    "formstream": "^1.1.0",
+    "request": "^2.85.0",
+    "urllib": "^2.27.0"
+  }
+}

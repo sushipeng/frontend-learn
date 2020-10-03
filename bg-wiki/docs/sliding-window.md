@@ -1,0 +1,1 @@
+<iframe style="border:none;width:100%;height:600px;overflow:hidden;" src="/docs/sliding-window2.html"></iframe>

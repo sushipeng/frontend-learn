@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="Assets/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="container">
+    <form>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>12栅格源代码：</label>
+                    <textarea class="form-control" style="width:100%;height:200px;" id="source"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>24栅格源码：</label>
+                    <textarea class="form-control" style="width:100%;height:200px;" id="dest" disabled></textarea>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success" onclick="convert()" style="width:100px;"><b>转 换</b></button>
+        <br /><br /><br />
+        <div class="row">
+            <div class="form-group col-md-24">
+                <!--<label>脚本：</label>-->
+                <textarea class="form-control" style="width:100%;height:300px;" id="script">
+                    function replace(source,dest){
+                        dest.value=source.value.replace(/col-\w*-(\d+)/ig, function(m,g,position,input){
+                            var m=arguments[0];
+                            var g=arguments[1];
+                            var num = parseInt(g) * 2;
+                            return m.replace(g, num);
+                        });
+                    }
+                    //点击转换按钮时调用
+                    function convert(){
+                        var source = document.getElementById('source');
+                        var dest = document.getElementById('dest');
+                        replace(source,dest);
+                    }
+                </textarea>
+                <script type="text/javascript">
+                    eval(document.getElementById('script').value);
+                </script>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
