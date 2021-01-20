@@ -135,10 +135,6 @@
 
     // console.log(arr);
 
-
-
-    
-
 /*
 
 
@@ -195,12 +191,9 @@
 
         //    enum Color {blue,red,'orange'};
 
-
         //    var c:Color=Color.red;
 
         //    console.log(c);   //1  如果标识符没有赋值 它的值就是下标
-
-
 
         // enum Color {blue,red=3,'orange'};
 
@@ -214,12 +207,8 @@
 
 
      enum Err {'undefined'=-1,'null'=-2,'success'=1};
-
-
      var e:Err=Err.success;
-
      console.log(e);
-
 
 
 // 任意类型（any）
@@ -236,8 +225,6 @@
 
 
     //任意类型的用处
-
-
     var oBox:any=document.getElementById('box');
     oBox.style.color='red';
 
@@ -265,12 +252,10 @@
 
 //一个元素可能是 number类型 可能是null 可能是undefined
 var num:number | null | undefined;
-
 num=1234;
 console.log(num)
 
 // void类型 :typescript中的void表示没有任何类型，一般用于定义方法的时候方法没有返回值。
-
  //es5的定义方法
     // function run(){
 
@@ -319,28 +304,21 @@ console.log(num)
 
 
 // never类型:是其他类型 （包括 null 和 undefined）的子类型，代表从不会出现的值。
-
 //这意味着声明never的变量只能被never类型所赋值。
 
 
    /*
-   
     var a:undefined;
-
     a=undefined;
-
     var b:null;
     b=null;
-
    */
 
 
 
    var a:never;
-
 //    a=123; //错误的写法
     a=(()=>{
-
         throw new Error('错误');
     })()
 

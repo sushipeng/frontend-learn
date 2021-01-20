@@ -25,15 +25,12 @@
         never类型
 
 3、typeScript中的函数
-
     3.1、函数的定义
     3.2、可选参数
     3.3、默认参数
     3.4、剩余参数
     3.5、函数重载
     3.6、箭头函数  es6
-
-
 */
 
 
@@ -126,9 +123,6 @@
 // 3.2、方法可选参数 
 
         // es5里面方法的实参和行参可以不一样，但是ts中必须一样，如果不一样就需要配置可选参数 
-
-
-
        /*
         function getInfo(name:string,age?:number):string{
 
@@ -171,13 +165,9 @@
       */
 
 
-// 3.3、默认参数 可选参数
-
-
+        // 3.3、默认参数 可选参数
         // es5里面没法设置默认参数，es6和ts中都可以设置默认参数
-
         /*
-
                 function getInfo(name:string,age:number=20):string{
 
                             if(age){
@@ -199,9 +189,6 @@
 
 
 // 3.4、剩余参数
-
-
-
             // function sum(a:number,b:number,c:number,d:number):number{
 
             //     return a+b+c+d;
@@ -213,12 +200,8 @@
 
 
     //三点运算符 接受新参传过来的值
-
-
         /*
             function sum(...result:number[]):number{
-
-                
                 var sum=0;
 
                 for(var i=0;i<result.length;i++){
@@ -265,89 +248,62 @@
 
     //ts为了兼容es5 以及 es6 重载的写法和java中有区别。
 
-
-
     //es5中出现同名方法，下面的会替换上面的方法 
         /*
             function css(config){
-
             }
-
             function css(config,value){
-
-
             }
         */
 
 
 
-    //ts中的重载
-               // 参数个数一样，参数类型不一样
-                // function getInfo(name:string):string;
+// ts中的重载
+// 参数个数一样，参数类型不一样
+// function getInfo(name:string):string;
+// function getInfo(age:number):string;
 
-                // function getInfo(age:number):string;
+// function getInfo(str:any):any{
+//     if(typeof str==='string'){
+//         return '我叫：'+str;
+//     } else {
+//         return '我的年龄是'+str;
+//     }
+// }
 
-                // function getInfo(str:any):any{
+// alert(getInfo('张三'));   //正确
+// alert(getInfo(20));   //正确
+// alert(getInfo(true));    //错误写法
 
-                //     if(typeof str==='string'){
+// 参数类型一样，参数个数不一样
+function getInfo(name:string):string;
+function getInfo(name:string,age:number):string;
+function getInfo(name:any,age?:any):any{
+    if(age) {
+        return '我叫：'+name+'我的年龄是'+age;
+    } else {
+        return '我叫：'+name;
+    }
+}
 
-                //         return '我叫：'+str;
-                //     }else{
+// alert(getInfo('zhangsan'));  /*正确*/
 
-                //         return '我的年龄是'+str;
-                //     }
+// alert(getInfo(123));  错误
 
-                // }
-
-                // alert(getInfo('张三'));   //正确
-
-
-                // alert(getInfo(20));   //正确
-
-
-                // alert(getInfo(true));    //错误写法
-
-    
-                 // 参数类型一样，参数个数不一样
-                function getInfo(name:string):string;
-                function getInfo(name:string,age:number):string;
-                function getInfo(name:any,age?:any):any{
-                    if(age){
-
-                        return '我叫：'+name+'我的年龄是'+age;
-                    }else{
-
-                        return '我叫：'+name;
-                    }
-                }
-
-                // alert(getInfo('zhangsan'));  /*正确*/
-
-                // alert(getInfo(123));  错误
-
-                // alert(getInfo('zhangsan',20));
+// alert(getInfo('zhangsan',20));
 
 
 
 
-// 3.6、箭头函数  es6  
+    // 3.6、箭头函数  es6  
+    //this指向的问题    箭头函数里面的this指向上下文
 
+    // setTimeout(function(){
+    //     alert('run')
+    // },1000)
 
-//this指向的问题    箭头函数里面的this指向上下文
-
-
-            
-
-        // setTimeout(function(){
-
-        //     alert('run')
-        // },1000)
-
-
-
-        setTimeout(()=>{
-
-            alert('run')
-        },1000)
+    setTimeout(()=>{
+        alert('run')
+    },1000)
     
 

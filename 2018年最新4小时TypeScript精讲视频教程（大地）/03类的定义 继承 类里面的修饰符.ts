@@ -67,10 +67,7 @@
 
   /*
         ts中定义类：
-
-
             class Person{
-
                 name:string;   //属性  前面省略了public关键词
 
                 constructor(n:string){  //构造函数   实例化类的时候触发的方法
