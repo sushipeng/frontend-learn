@@ -1,143 +1,6 @@
-/*
-1、vscode配置自动编译
-
-    1.第一步   tsc --inti 生成tsconfig.json   改 "outDir": "./js",  
-
-    2、第二步 任务 - 运行任务  监视tsconfig.json
-
-    tsc filename.ts  生成js
-    tsc filename.ts -d 生成声明文件filename.d.ts 代码提示功能
-
-
-2、typeScript中的数据类型
-
-    typescript中为了使编写的代码更规范，更有利于维护，增加了类型校验，在typescript中主要给我们提供了以下数据类型
-
-        布尔类型（boolean）
-        数字类型（number）
-        字符串类型(string)
-        数组类型（array）
-        元组类型（tuple）
-        枚举类型（enum）
-        
-        任意类型（any）
-        null 和 undefined
-        void类型
-        never类型
-
-*/
-
-
-//布尔类型（boolean）
-
-    /*
-    es5的写法 （正确写法）  ts中（错误写法）
-        var flag=true;
-        
-        flag=456;
-    */
-
  
 
-    /*
-     typescript中为了使编写的代码更规范，更有利于维护，增加了类型校验
-
-     写ts代码必须指定类型
-
-
-
-    var flag:boolean=true;
-
-    // flag=123;  //错误
-
-    flag=false;  //正确
-
-    console.log(flag);
-
-
-    */
-
-
-
-// 数字类型（number）
-
-
-    /*
-        var num:number=123;
-
-        num=456;
-
-        console.log(num);  /正确/
-
-
-        num='str';    //错误
-        
-        */
-
-
-// 字符串类型(string)
-
-
-   /*
-        var str:string='this is ts';
-
-        str='haha';  //正确
-
-
-        str=true;  //错误
-
-   */
-    
-
-
-// 数组类型（array）  ts中定义数组有两种方式
-
-    // var arr=['1','2'];  //es5定义数组
-
-
-    // 1.第一种定义数组的方式
-
-    
-    
-        var arr:number[]=[11,22,33];
-
-        console.log(arr);
-    
-
-    //2.第二种定义数组的方式
-
-   
-      
-        var arr2:Array<number>=[11,22,33];
-
-        console.log(arr2)
-        
-   
-
-    //3、第三种
-
-        var arr3:any[]=['131214',22,true];
-
-        console.log(arr3);
-
-
-
-// 元组类型（tuple）  属于数组的一种
-
-
-    // var arr:Array<number>=[11,22,33];
-
-    // console.log(arr)
-
-
-    //元祖类型
-    // let arr:[number,string]=[123,'this is ts'];
-
-    // console.log(arr);
-
 /*
-
-
 
 枚举类型（enum）
     随着计算机的不断普及，程序不仅只用于数值计算，还更广泛地用于处理非数值的数据。
@@ -152,108 +15,63 @@
                 标识符[=整型常数], 
                 ... 
                 标识符[=整型常数], 
-            } ;     
+            }      
 
  */
 
-            /*
+enum Flag {success=1,error=2}
+let s:Flag = Flag.success
+console.log(s)
 
-                enum Flag {success=1,error=2};
-
-
-                let s:Flag=Flag.success;
-
-                console.log(s);
-
+enum Flag {success=1,error=2}
+let f:Flag=Flag.error
+console.log(f)
 
 
-                enum Flag {success=1,error=2};
+   enum Color {blue,red,'orange'}
+   let c:Color=Color.red
+   console.log(c)   //1  如果标识符没有赋值 它的值就是下标
+
+enum Color {blue,red=3,'orange'}
+let c:Color=Color.red
+console.log(c)   //3
+
+let c:Color=Color.orange
+console.log(c)   //4
 
 
-                    let f:Flag=Flag.error;
+enum Err {'undefined'=-1,'null'=-2,'success'=1}
+let e:Err=Err.success
+console.log(e)
 
-                    console.log(f);
-            */
-
-    
-
-            /*
-            000010
-
-            -1
-
-            -2
-
-
-            */
-
-
-
-        //    enum Color {blue,red,'orange'};
-
-        //    var c:Color=Color.red;
-
-        //    console.log(c);   //1  如果标识符没有赋值 它的值就是下标
-
-        // enum Color {blue,red=3,'orange'};
-
-
-        // // var c:Color=Color.red;
-
-        // // console.log(c);   //3
-
-        // var c:Color=Color.orange;
-        // console.log(c);   //4
-
-
-     enum Err {'undefined'=-1,'null'=-2,'success'=1};
-     var e:Err=Err.success;
-     console.log(e);
-
-
-// 任意类型（any）
-
-
-    // var num:any=123;
-
-    // num='str';
-
-    // num=true;
-
-    // console.log(num)
-
-
-
-    //任意类型的用处
-    var oBox:any=document.getElementById('box');
-    oBox.style.color='red';
 
 
 // null 和 undefined  其他（never类型）数据类型的子类型
-// var num:number;
+// let num:number
 // console.log(num)  //输出：undefined   报错
 
-// var num:undefined;
-// console.log(num)  //输出：undefined  //正确
+// let num:undefined
+// console.log(num)  //输出：undefined  // 正确
 
 
-// var num:number | undefined;
-// num=123;
-// console.log(num);
+let num:number | undefined
+num= 123
+console.log(num)
 
 
-//定义没有赋值就是undefined
-// var num:number | undefined;
-// console.log(num);
+// 定义没有赋值就是undefined
+let num:number | undefined
+console.log(num)
 
 
-// var num:null;
-// num=null;
+// let num:null
+// num=null
 
 //一个元素可能是 number类型 可能是null 可能是undefined
-var num:number | null | undefined;
-num=1234;
+let num:number | null | undefined
+num=1234
 console.log(num)
+
 
 // void类型 :typescript中的void表示没有任何类型，一般用于定义方法的时候方法没有返回值。
  //es5的定义方法
@@ -262,32 +80,20 @@ console.log(num)
     //     console.log('run')
     // }
 
-    // run();
+    // run()
 
 
 //表示方法没有返回任何类型
-    /* 
-    //正确写法
-    function run():void{
 
-            console.log('run')
-        }
+function func():void{
+    console.log('hello')
+}
 
-        run();
-        
-        */
-    
+//错误写法
+function func(): undefined{
+    console.log('hello')
+}
 
-        //错误写法
-        /*
-            function run():undefined{
-
-                console.log('run')
-            }
-
-            run();
-
-        */
 
 
 
@@ -295,10 +101,10 @@ console.log(num)
        /*
        function run():number{
 
-           return 123;
+           return 123
         }
 
-        run();
+        run()
        */
 
 
@@ -308,24 +114,17 @@ console.log(num)
 
 
    /*
-    var a:undefined;
-    a=undefined;
-    var b:null;
-    b=null;
+    let a:undefined
+    a=undefined
+    let b:null
+    b=null
    */
 
 
 
-   var a:never;
-//    a=123; //错误的写法
-    a=(()=>{
-        throw new Error('错误');
-    })()
-
-
-
-
-
-
-
+let foo:never
+// foo =123 //错误写法
+foo = (() => {
+    throw new Error('错误')
+})()
 
